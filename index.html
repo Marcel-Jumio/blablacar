@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- SDK logotype override -->
+    <template id="jumio-logotype">
+      <img src="/BlaBlaCar_logo.svg" alt="BlaBlaCar" style="display:block;margin:0 auto;max-height:32px;width:auto;" />
+    </template>
+
+    <!-- START page template placeholders -->
+    <template id="jumio-start-before"><div style="text-align:center;color:#888;font-size:12px">jumio-start-before</div></template>
+    <template id="jumio-start-title"><div style="text-align:center;color:#888;font-size:12px">jumio-start-title</div></template>
+    <template id="jumio-start-explanation"><div style="text-align:center;color:#888;font-size:12px">jumio-start-explanation</div></template>
+    <template id="jumio-start-checklist"><div style="text-align:center;color:#888;font-size:12px">jumio-start-checklist</div></template>
+    <template id="jumio-start-after"><div style="text-align:center;color:#888;font-size:12px">jumio-start-after</div></template>
+
+    <!-- Document selection customization -->
+    <template id="jumio-id-document-select-title">
+      <h1 class="text-center no-outline" tabindex="-1" style="font-size:40px;font-weight:700;color:#0a2332;">Which document would you like to upload?</h1>
+    </template>
+    <template id="jumio-id-document-select-before">
+      <div style="height:8px"></div>
+    </template>
+    <template id="jumio-id-document-select-after">
+      <p style="max-width:720px;margin:24px auto 0;color:#51646f;">
+        The data collected by Comuto SA is necessary for verifying your identity. For more information and to exercise your rights, see our <a href="#" style="color:#2dbfff;">Privacy Policy</a>.
+      </p>
+    </template>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

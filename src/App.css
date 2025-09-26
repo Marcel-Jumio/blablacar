@@ -1,0 +1,63 @@
+#root {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* BlaBlaCar-like header */
+.bb-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #0a2332;
+  color: #fff;
+}
+.bb-header__left { display: flex; align-items: center; gap: 12px; }
+.bb-logo { display: block; height: 28px; width: auto; }
+.bb-nav { display: flex; gap: 16px; font-weight: 500; }
+.bb-nav a { color: #c9d5db; text-decoration: none; }
+.bb-nav a:hover { color: #ffffff; }
+
+/* Top developer/demo panel */
+.bb-devbar {
+  background: #f0fbff;
+  border-bottom: 2px solid #c7ecff;
+  padding: 16px 24px;
+}
+.bb-devbar .bb-panel { margin: 0; }
+
+/* Page container (wider and centered) */
+.bb-container { padding: 24px; max-width: 1280px; margin: 0 auto; }
+.bb-hero { margin: 16px 0 24px; }
+.bb-hero h1 { margin: 0 0 8px; font-size: 28px; }
+.bb-hero p { margin: 0; color: #51646f; }
+
+/* Panel for settings */
+.bb-panel { background: #f6fbff; border: 1px solid #d6eefb; border-radius: 8px; padding: 16px; }
+.bb-panel label { display: inline-flex; align-items: center; }
+.bb-panel input, .bb-panel select { margin-left: 8px; padding: 6px 8px; border: 1px solid #cfe3ed; border-radius: 6px; }
+
+/* Card-like container */
+.bb-card { margin-top: 24px; background: #ffffff; border: 1px solid #e3ecf1; border-radius: 10px; padding: 16px; }
+
+/* Verify view (full width with centered content) */
+.verify-view { padding: 24px; max-width: 1280px; margin: 0 auto; }
+.verify-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.verify-back { color: #2dbfff; background: none; border: none; padding: 0; cursor: pointer; font-weight: 600; }
+.verify-sdk { background: #fefefe; border: 1px solid #e3ecf1; border-radius: 10px; padding: 16px; }
+
+/* Make Jumio SDK inherit the app's font stack */
+jumio-sdk, jumio-sdk * { font-family: inherit !important; }
+
+/* Seamless embedding: align colors with page */
+jumio-sdk {
+  --jumio-sdk-color-primary6: #2dbfff;
+  --jumio-sdk-color-primary4: #2dbfff;
+  --jumio-sdk-theme-light-app-container-bg-color: transparent;
+  --jumio-sdk-theme-dark-app-container-bg-color: transparent;
+  --jumio-sdk-theme-light-page-bg-color: transparent;
+  --jumio-sdk-theme-dark-page-bg-color: transparent;
+}
