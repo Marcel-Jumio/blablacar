@@ -8,10 +8,11 @@ function App() {
 
   const [token, setToken] = useState('');
   const [dc, setDc] = useState('eu');
-  const [slot, setSlot] = useState('');
+  const [selectedScenario, setSelectedScenario] = useState('');
 
   // plain string state to avoid TS syntax in JSX file
-  const [view, setView] = useState('profile'); // 'profile' | 'verify'
+  const [view, setView] = useState('profile'); // 'profile' | 'document-selection' | 'verify'
+  const [selectedDocumentType, setSelectedDocumentType] = useState('');
 
   useEffect(() => { import('@jumio/websdk'); }, []);
 
@@ -19,30 +20,28 @@ function App() {
     if (jumioRef.current) {
       jumioRef.current.setAttribute('token', token);
       jumioRef.current.setAttribute('dc', dc);
-      if (slot) jumioRef.current.setAttribute('slot', slot); else jumioRef.current.removeAttribute('slot');
     }
-  }, [token, dc, slot, view]);
+  }, [token, dc, view]);
 
   const startVerify = () => {
     if (!token) { alert('Paste a valid Jumio token first.'); return; }
+    
+    // If "Document selection within Jumio SDK" is selected, skip custom document selection
+    if (selectedScenario === 'document-in-sdk') {
+      setView('verify');
+    } else {
+      setView('document-selection');
+    }
+  };
+
+  const selectDocument = (documentType) => {
+    setSelectedDocumentType(documentType);
     setView('verify');
     requestAnimationFrame(() => sdkContainerRef.current?.scrollIntoView({ behavior: 'smooth' }));
   };
 
   return (
     <div>
-      <header className="bb-header">
-        <div className="bb-header__left">
-          <img src="/BlaBlaCar_logo.svg" alt="BlaBlaCar" className="bb-logo" />
-          <nav className="bb-nav">
-            <a href="#">Profile</a>
-            <a href="#">Trips</a>
-            <a href="#">Payments</a>
-          </nav>
-        </div>
-        <div style={{ opacity: 0.8 }}>Demo</div>
-      </header>
-
       {/* Top developer panel */}
       <div className="bb-devbar">
         <section className="bb-panel">
@@ -60,10 +59,32 @@ function App() {
                   <option value="sgp">SGP</option>
                 </select>
               </label>
-              <label>
-                Slot
-                <input type="text" value={slot} onChange={e => setSlot(e.target.value)} placeholder="Optional slot" style={{ width: 220 }} />
-              </label>
+              
+              <div style={{ width: '1px', height: '32px', background: '#d6eefb', margin: '0 8px' }}></div>
+              
+              <button 
+                type="button"
+                className={`scenario-button ${selectedScenario === 'document-in-sdk' ? 'active' : ''}`}
+                onClick={() => setSelectedScenario(selectedScenario === 'document-in-sdk' ? '' : 'document-in-sdk')}
+              >
+                Document selection within Jumio SDK
+              </button>
+              
+              <button 
+                type="button"
+                className={`scenario-button ${selectedScenario === 'document-on-customer' ? 'active' : ''}`}
+                onClick={() => setSelectedScenario(selectedScenario === 'document-on-customer' ? '' : 'document-on-customer')}
+              >
+                Document selection on customer page
+              </button>
+              
+              <button 
+                type="button"
+                className={`scenario-button ${selectedScenario === 'placeholder' ? 'active' : ''}`}
+                onClick={() => setSelectedScenario(selectedScenario === 'placeholder' ? '' : 'placeholder')}
+              >
+                Placeholder scenario
+              </button>
             </div>
           </form>
         </section>
@@ -71,36 +92,154 @@ function App() {
 
       {view === 'profile' && (
         <main className="bb-container">
-          <section className="bb-hero">
-            <h1>About you</h1>
-            <p>Verify your profile details to increase trust.</p>
+          {/* Navigation tabs */}
+          <div className="bb-tabs">
+            <button className="bb-tab bb-tab--active">About you</button>
+            <button className="bb-tab">Account</button>
+          </div>
+
+          {/* User profile section */}
+          <section className="bb-profile-section">
+            <div className="bb-profile-header">
+              <div className="bb-avatar">
+                <div className="bb-avatar-placeholder"></div>
+              </div>
+              <div className="bb-profile-info">
+                <div className="bb-profile-name">
+                  <h2>Marcel</h2>
+                  <span className="bb-profile-status">Newcomer</span>
+                  <span className="bb-profile-arrow">›</span>
+                </div>
+                <div className="bb-profile-actions">
+                  <button className="bb-profile-action">
+                    <span className="bb-icon">+</span>
+                    Add profile picture
+                  </button>
+                  <button className="bb-profile-action">
+                    Edit personal details
+                  </button>
+                </div>
+              </div>
+            </div>
           </section>
 
-          <section className="bb-card" style={{ padding: 0 }}>
-            <div style={{ padding: 16 }}>
-              <h2 style={{ margin: '0 0 12px' }}>Verify your profile</h2>
-              <button onClick={startVerify} className="verify-back" style={{ fontSize: 18 }}>
-                <span style={{ display: 'inline-block', width: 20, height: 20, borderRadius: '50%', border: '2px solid #2dbfff', lineHeight: '16px', textAlign: 'center', fontWeight: 700 }}>+</span>
-                &nbsp;Verify ID
+          {/* Reliability section */}
+          <section className="bb-card">
+            <h3>Your carpooling reliability</h3>
+            <div className="bb-reliability-item">
+              <span className="bb-icon bb-icon--green">✓</span>
+              <span>Never cancels bookings as a passenger</span>
+              <span className="bb-icon bb-icon--info">ℹ</span>
+            </div>
+          </section>
+
+          {/* Verification section */}
+          <section className="bb-card">
+            <h3>Verify your profile</h3>
+            <div className="bb-verification-options">
+              <button onClick={startVerify} className="bb-verify-option bb-verify-option--primary">
+                <span className="bb-icon">+</span>
+                Verify ID
+              </button>
+              <button className="bb-verify-option">
+                <span className="bb-icon">+</span>
+                Confirm email marcel.bernatz@jumio.com
+              </button>
+              <button className="bb-verify-option">
+                <span className="bb-icon">+</span>
+                Confirm phone number
+              </button>
+            </div>
+          </section>
+
+          {/* About you section */}
+          <section className="bb-card">
+            <h3>About you</h3>
+            <div className="bb-about-options">
+              <button className="bb-about-option">
+                <span className="bb-icon">+</span>
+                Add a mini bio
+              </button>
+              <button className="bb-about-option">
+                <span className="bb-icon">+</span>
+                Edit travel preferences
+              </button>
+            </div>
+          </section>
+
+          {/* Vehicles section */}
+          <section className="bb-card">
+            <h3>Vehicles</h3>
+            <div className="bb-vehicle-options">
+              <button className="bb-vehicle-option">
+                <span className="bb-icon">+</span>
+                Add vehicle
               </button>
             </div>
           </section>
         </main>
       )}
 
+      {view === 'document-selection' && (
+        <main className="bb-document-selection">
+          <div className="bb-document-header">
+            <img src="/BlaBlaCar_logo.svg" alt="BlaBlaCar" className="bb-logo" />
+          </div>
+          
+          <div className="bb-document-content">
+            <h1 className="bb-document-title">Which document would you like to upload?</h1>
+            
+            <div className="bb-document-options">
+              <button 
+                className="bb-document-option" 
+                onClick={() => selectDocument('passport')}
+              >
+                <div className="bb-document-option-content">
+                  <div className="bb-document-option-text">
+                    <h3>Passport</h3>
+                    <p>Face photo page</p>
+                  </div>
+                  <span className="bb-document-arrow">›</span>
+                </div>
+              </button>
+              
+              <div className="bb-document-divider"></div>
+              
+              <button 
+                className="bb-document-option" 
+                onClick={() => selectDocument('driving-licence')}
+              >
+                <div className="bb-document-option-content">
+                  <div className="bb-document-option-text">
+                    <h3>Driving Licence</h3>
+                    <p>Front and back</p>
+                  </div>
+                  <span className="bb-document-arrow">›</span>
+                </div>
+              </button>
+            </div>
+            
+            <div className="bb-document-footer">
+              <p>
+                The data collected by Comuto SA is necessary for verifying your identity. 
+                For more information and to exercise your rights, see our{' '}
+                <a href="#" className="bb-privacy-link">Privacy Policy</a>.
+              </p>
+            </div>
+          </div>
+        </main>
+      )}
+
       {view === 'verify' && (
-        <main className="verify-view">
+        <div>
           <div className="verify-header">
             <button className="verify-back" onClick={() => setView('profile')}>&larr; Back to profile</button>
           </div>
-          <div ref={sdkContainerRef} className="verify-sdk">
-            <jumio-sdk ref={jumioRef}>
-              
-              <jumio-sdk-logger-console slot="logger" data-enabled="true"></jumio-sdk-logger-console>
-              <jumio-sdk-logger-datadog slot="logger" data-enabled="true" data-config='{"applicationId": "123"}'></jumio-sdk-logger-datadog>
-            </jumio-sdk>
-          </div>
-        </main>
+          <jumio-sdk ref={jumioRef}>
+            <jumio-sdk-logger-console slot="logger" data-enabled="true"></jumio-sdk-logger-console>
+            <jumio-sdk-logger-datadog slot="logger" data-enabled="true" data-config='{"applicationId": "123"}'></jumio-sdk-logger-datadog>
+          </jumio-sdk>
+        </div>
       )}
     </div>
   );

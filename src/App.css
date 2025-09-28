@@ -6,31 +6,35 @@
   text-align: left;
 }
 
-/* BlaBlaCar-like header */
-.bb-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 24px;
-  background: #0a2332;
-  color: #fff;
+/* Ensure full viewport coverage */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
-.bb-header__left { display: flex; align-items: center; gap: 12px; }
-.bb-logo { display: block; height: 28px; width: auto; }
-.bb-nav { display: flex; gap: 16px; font-weight: 500; }
-.bb-nav a { color: #c9d5db; text-decoration: none; }
-.bb-nav a:hover { color: #ffffff; }
 
 /* Top developer/demo panel */
 .bb-devbar {
   background: #f0fbff;
   border-bottom: 2px solid #c7ecff;
   padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-.bb-devbar .bb-panel { margin: 0; }
+.bb-devbar .bb-panel { 
+  margin: 0; 
+  background: #ffffff;
+  border: 1px solid #d6eefb;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 /* Page container (wider and centered) */
-.bb-container { padding: 24px; max-width: 1280px; margin: 0 auto; }
+.bb-container { padding: 40px; max-width: 1200px; margin: 0 auto; }
 .bb-hero { margin: 16px 0 24px; }
 .bb-hero h1 { margin: 0 0 8px; font-size: 28px; }
 .bb-hero p { margin: 0; color: #51646f; }
@@ -40,24 +44,510 @@
 .bb-panel label { display: inline-flex; align-items: center; }
 .bb-panel input, .bb-panel select { margin-left: 8px; padding: 6px 8px; border: 1px solid #cfe3ed; border-radius: 6px; }
 
-/* Card-like container */
-.bb-card { margin-top: 24px; background: #ffffff; border: 1px solid #e3ecf1; border-radius: 10px; padding: 16px; }
+/* Scenario buttons */
+.scenario-button {
+  background: #ffffff;
+  border: 1px solid #cfe3ed;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #51646f;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
 
-/* Verify view (full width with centered content) */
-.verify-view { padding: 24px; max-width: 1280px; margin: 0 auto; }
-.verify-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.verify-back { color: #2dbfff; background: none; border: none; padding: 0; cursor: pointer; font-weight: 600; }
-.verify-sdk { background: #fefefe; border: 1px solid #e3ecf1; border-radius: 10px; padding: 16px; }
+.scenario-button:hover {
+  background: #f8f9fa;
+  border-color: #2dbfff;
+}
+
+.scenario-button.active {
+  background: #2dbfff;
+  border-color: #2dbfff;
+  color: #ffffff;
+}
+
+/* Navigation tabs */
+.bb-tabs {
+  display: flex;
+  border-bottom: 1px solid #e3ecf1;
+  margin-bottom: 24px;
+  padding: 0;
+}
+
+.bb-tab {
+  background: none;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #51646f;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.bb-tab--active {
+  color: #0a2332;
+  border-bottom-color: #2dbfff;
+  font-weight: 600;
+}
+
+.bb-tab:hover {
+  color: #0a2332;
+}
+
+/* Profile section */
+.bb-profile-section {
+  margin-bottom: 0;
+  padding: 32px 0;
+  border-bottom: 3px solid #e3ecf1;
+}
+
+.bb-profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 0;
+}
+
+.bb-avatar {
+  flex-shrink: 0;
+}
+
+.bb-avatar-placeholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #999;
+}
+
+.bb-profile-info {
+  flex: 1;
+}
+
+.bb-profile-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.bb-profile-name h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #0a2332;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.bb-profile-status {
+  font-size: 18px;
+  color: #51646f;
+  font-weight: 500;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.bb-profile-arrow {
+  font-size: 18px;
+  color: #51646f;
+  margin-left: auto;
+}
+
+.bb-profile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bb-profile-action {
+  background: none;
+  border: none;
+  color: #2dbfff;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: left;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
+.bb-profile-action:hover {
+  text-decoration: underline;
+}
+
+/* Section containers with dividers */
+.bb-card { 
+  margin-top: 0; 
+  background: none; 
+  border: none; 
+  border-radius: 0; 
+  padding: 32px 0; 
+  border-bottom: 3px solid #e3ecf1;
+}
+
+.bb-card:last-child {
+  border-bottom: none;
+}
+
+.bb-card h3 {
+  margin: 0 0 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #0a2332;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Reliability section */
+.bb-reliability-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  font-size: 18px;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.bb-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+}
+
+.bb-icon--green {
+  color: #28a745;
+  font-weight: bold;
+}
+
+.bb-icon--info {
+  color: #2dbfff;
+  margin-left: auto;
+}
+
+/* Verification and other options */
+.bb-verification-options,
+.bb-about-options,
+.bb-vehicle-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.bb-verify-option,
+.bb-about-option,
+.bb-vehicle-option {
+  background: none;
+  border: none;
+  color: #2dbfff;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: left;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+
+.bb-verify-option--primary {
+  background: #f8f9fa;
+  border: 1px solid #f8f9fa;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.bb-verify-option:last-child,
+.bb-about-option:last-child,
+.bb-vehicle-option:last-child {
+  border-bottom: none;
+}
+
+.bb-verify-option:hover,
+.bb-about-option:hover,
+.bb-vehicle-option:hover {
+  text-decoration: underline;
+}
+
+/* Document selection page */
+.bb-document-selection {
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.bb-document-header {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+}
+
+.bb-document-header .bb-logo {
+  height: 32px;
+  width: auto;
+}
+
+.bb-document-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 24px;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.bb-document-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0a2332;
+  text-align: left;
+  margin: 0 0 24px;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 100%;
+}
+
+.bb-document-options {
+  width: 100%;
+  background: #ffffff;
+  border: none;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.bb-document-option {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.bb-document-option:hover {
+  background: #f8f9fa;
+}
+
+.bb-document-option-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.bb-document-option-text {
+  text-align: left;
+  flex: 1;
+}
+
+.bb-document-option-text h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #0a2332;
+  margin: 0 0 1px;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: left;
+}
+
+.bb-document-option-text p {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: left;
+}
+
+.bb-document-arrow {
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.bb-document-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0;
+}
+
+.bb-document-footer {
+  margin-top: 24px;
+  text-align: left;
+  width: 100%;
+}
+
+.bb-document-footer p {
+  font-size: 14px;
+  color: #51646f;
+  line-height: 1.5;
+  margin: 0;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: left;
+}
+
+.bb-privacy-link {
+  color: #2dbfff;
+  text-decoration: none;
+}
+
+.bb-privacy-link:hover {
+  text-decoration: underline;
+}
+
+/* Verify view - minimal container */
+.verify-header { 
+  display: flex; 
+  align-items: center; 
+  gap: 12px; 
+  margin-bottom: 16px; 
+  padding: 16px 24px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e3ecf1;
+}
+.verify-back { 
+  color: #2dbfff; 
+  background: none; 
+  border: none; 
+  padding: 0; 
+  cursor: pointer; 
+  font-weight: 600; 
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* GT Eesti Pro Display font definitions */
+@font-face {
+  font-family: 'GT Eesti Pro Display';
+  src: url('https://cdn.blablacar.com/kairos/theme-provider/assets/fonts/GT-Eesti-Pro-Display-Regular-1.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT Eesti Pro Display';
+  src: url('https://cdn.blablacar.com/kairos/theme-provider/assets/fonts/GT-Eesti-Pro-Display-Medium-1.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ensure fonts are loaded and applied */
+body, html {
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Force font loading for all elements */
+* {
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
 
 /* Make Jumio SDK inherit the app's font stack */
 jumio-sdk, jumio-sdk * { font-family: inherit !important; }
 
+/* Set Jumio SDK height */
+jumio-sdk {
+  height: 800px !important;
+  min-height: 800px !important;
+}
+
+/* Increase font size for document type selection buttons */
+jumio-sdk [data-testid*="document-type"],
+jumio-sdk [class*="document-type"],
+jumio-sdk [class*="documentType"],
+jumio-sdk button[class*="document"],
+jumio-sdk .document-type-button,
+jumio-sdk .document-type-option {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+}
+
+/* Target common Jumio SDK button classes for document selection */
+jumio-sdk button {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+/* Document selection cards styling */
+jumio-sdk [class*="card"],
+jumio-sdk [class*="Card"],
+jumio-sdk [data-testid*="card"],
+jumio-sdk [data-testid*="Card"],
+jumio-sdk .document-card,
+jumio-sdk .document-type-card {
+  color: #0a2332 !important;
+  font-weight: 500 !important;
+}
+
+/* Document selection card text elements */
+jumio-sdk [class*="card"] h1,
+jumio-sdk [class*="card"] h2,
+jumio-sdk [class*="card"] h3,
+jumio-sdk [class*="card"] p,
+jumio-sdk [class*="card"] span,
+jumio-sdk [class*="card"] div {
+  color: #0a2332 !important;
+}
+
 /* Seamless embedding: align colors with page */
 jumio-sdk {
-  --jumio-sdk-color-primary6: #2dbfff;
-  --jumio-sdk-color-primary4: #2dbfff;
+  --jumio-sdk-font-family: 'GT Eesti Pro Display', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --jumio-sdk-color-primary6: #00aff5;
+  
+  /* Text color overrides */
+  --jumio-sdk-color-text-primary: #054652;
+  --jumio-sdk-color-text-secondary: #054652;
+  --jumio-sdk-color-text-tertiary: #054652;
+
+  --jumio-sdk-theme-light-clickable-primary-default-bg-color: #00aff5;
+  --jumio-sdk-theme-light-clickable-primary-default-color: #fff;
+  --jumio-sdk-theme-light-clickable-primary-focus-bg-color: #008ec2;
+  --jumio-sdk-theme-light-clickable-primary-focus-color: #fff;
+  --jumio-sdk-theme-light-clickable-primary-active-bg-color: #008ec2;
+  --jumio-sdk-theme-light-clickable-primary-active-color: #fff;
+  --jumio-sdk-theme-light-clickable-primary-disabled-bg-color: rgba(0, 142, 194, 0.5);
+  --jumio-sdk-theme-light-clickable-primary-disabled-color: #fff;
+
+  --jumio-sdk-theme-light-clickable-secondary-default-bg-color: transparent;
+  --jumio-sdk-theme-light-clickable-secondary-default-border-color: transparent;
+  --jumio-sdk-theme-light-clickable-secondary-focus-border-color: transparent;
+  --jumio-sdk-theme-light-clickable-secondary-focus-bg-color: ededed;
+  --jumio-sdk-theme-light-clickable-secondary-focus-color: #000;
+  --jumio-sdk-theme-light-clickable-secondary-active-border-color: transparent;
+  --jumio-sdk-theme-light-clickable-secondary-active-bg-color: ededed;
+  --jumio-sdk-theme-light-clickable-secondary-active-color: #000;
+  --jumio-sdk-theme-light-clickable-secondary-disabled-bg-color: rgba(0, 142, 194, 0.75);
+  --jumio-sdk-theme-light-clickable-secondary-disabled-color: #fff;
+
+  --jumio-sdk-theme-light-clickable-quiet-active-bg-color: #008ec2;
+  --jumio-sdk-theme-light-clickable-quiet-active-color: #fff;
+  --jumio-sdk-theme-light-clickable-quiet-focus-bg-color: #008ec2;
+  --jumio-sdk-theme-light-clickable-quiet-focus-color: #fff;
+
   --jumio-sdk-theme-light-app-container-bg-color: transparent;
   --jumio-sdk-theme-dark-app-container-bg-color: transparent;
   --jumio-sdk-theme-light-page-bg-color: transparent;
   --jumio-sdk-theme-dark-page-bg-color: transparent;
+
+  --jumio-sdk-color-primary4: #00aff5;
+  --jumio-sdk-color-primary6: #00aff5;
 }

@@ -1,0 +1,45 @@
+    <link rel="preload" href="https://cdn.blablacar.com/kairos/theme-provider/assets/fonts/GT-Eesti-Pro-Display-Medium-1.woff2" as="font" type="font/woff2" crossorigin="">
+    <link rel="preload" href="https://cdn.blablacar.com/kairos/theme-provider/assets/fonts/GT-Eesti-Pro-Display-Regular-1.woff2" as="font" type="font/woff2" crossorigin="">
+   
+   <style>
+        :root {
+            --jumio-sdk-font-family: 'gt-eesti', "Helvetica Neue", Helvetica, Arial, sans-serif;
+            --jumio-sdk-color-primary6: #00aff5;
+
+            --jumio-sdk-theme-light-clickable-primary-default-bg-color: #00aff5;
+            --jumio-sdk-theme-light-clickable-primary-default-color: #fff;
+            --jumio-sdk-theme-light-clickable-primary-focus-bg-color: #008ec2;
+            --jumio-sdk-theme-light-clickable-primary-focus-color: #fff;
+            --jumio-sdk-theme-light-clickable-primary-active-bg-color: #008ec2;
+            --jumio-sdk-theme-light-clickable-primary-active-color: #fff;
+            --jumio-sdk-theme-light-clickable-primary-disabled-bg-color: rgba(0, 142, 194, 0.5);
+            --jumio-sdk-theme-light-clickable-primary-disabled-color: #fff;
+
+            --jumio-sdk-theme-light-clickable-secondary-default-bg-color: transparent;
+            --jumio-sdk-theme-light-clickable-secondary-default-border-color: transparent;
+            --jumio-sdk-theme-light-clickable-secondary-focus-border-color: transparent;
+            --jumio-sdk-theme-light-clickable-secondary-focus-bg-color: ededed;
+            --jumio-sdk-theme-light-clickable-secondary-focus-color: #000;
+            --jumio-sdk-theme-light-clickable-secondary-active-border-color: transparent;
+            --jumio-sdk-theme-light-clickable-secondary-active-bg-color: ededed;
+            --jumio-sdk-theme-light-clickable-secondary-active-color: #000;
+            --jumio-sdk-theme-light-clickable-secondary-disabled-bg-color: rgba(0, 142, 194, 0.75);
+            --jumio-sdk-theme-light-clickable-secondary-disabled-color: #fff;
+
+            --jumio-sdk-theme-light-clickable-quiet-active-bg-color: #008ec2;
+            --jumio-sdk-theme-light-clickable-quiet-active-color: #fff;
+            --jumio-sdk-theme-light-clickable-quiet-focus-bg-color: #008ec2;
+            --jumio-sdk-theme-light-clickable-quiet-focus-color: #fff;
+
+            --jumio-sdk-theme-light-app-container-bg-color: transparent;
+            --jumio-sdk-theme-dark-app-container-bg-color: transparent;
+            --jumio-sdk-theme-light-page-bg-color: transparent;
+            --jumio-sdk-theme-dark-page-bg-color: transparent;
+
+            --jumio-sdk-color-primary4: #00aff5;
+            --jumio-sdk-color-primary6: #00aff5;
+        }
+    </style>
+    <template id="id_document-type_country-selection">
+        <p></p>
+    </template>
