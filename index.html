@@ -24,11 +24,16 @@
     </template>
 
     <!-- START page template placeholders -->
-    <template id="jumio-start-before"><div style="text-align:center;color:#888;font-size:12px">jumio-start-before</div></template>
-    <template id="jumio-start-title"><div style="text-align:center;color:#888;font-size:12px">jumio-start-title</div></template>
-    <template id="jumio-start-explanation"><div style="text-align:center;color:#888;font-size:12px">jumio-start-explanation</div></template>
-    <template id="jumio-start-checklist"><div style="text-align:center;color:#888;font-size:12px">jumio-start-checklist</div></template>
-    <template id="jumio-start-after"><div style="text-align:center;color:#888;font-size:12px">jumio-start-after</div></template>
+    
+    <template id="jumio-start-before"><h1 style="text-align:center; color:#054652">We need either ID Card or a Passport</h1></template>
+    <template id="jumio-start-guidance">
+      <div style="text-align: center; padding: 20px;">
+        <img src="/PP_ID_CARD.png" alt="ID Card Example" style="max-width: 70%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);" />
+        <p style="margin-top: 16px; font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #91adbf; font-size: 16px; font-weight: 500;">
+          Consider changing to your Mobile Phone - there a button below to do so
+        </p>
+      </div>
+    </template>
 
 
     <!-- Country selection customization -->
@@ -49,8 +54,26 @@
       </p>
     </template>
 
+
+
     <!-- Success Screen customization -->
-     
+    <template id="jumio-finish-success">
+      <style>
+      .jumio-finish-success {
+        text-align: center;
+      }
+    
+      .jumio-finish-success__text {
+        font-size: 2em;
+      }
+      </style>
+    
+      <div class="jumio-finish-success">
+        <div><img src="https://cdn.blablacar.com/k/a/images/points_of_sale-2177063c81e5fb9a.svg" height="320" width="460" /></div>
+        <div class="jumio-finish-success__text">Success!</div>
+      </div>
+    </template>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -91,12 +91,34 @@ function App() {
       </div>
 
       {view === 'profile' && (
-        <main className="bb-container">
-          {/* Navigation tabs */}
-          <div className="bb-tabs">
-            <button className="bb-tab bb-tab--active">About you</button>
-            <button className="bb-tab">Account</button>
-          </div>
+        <div>
+          {/* Top navigation bar */}
+          <header className="bb-header">
+            <div className="bb-header-content">
+              <div className="bb-header-left">
+                <img src="/BlaBlaCar_logo.svg" alt="BlaBlaCar" className="bb-header-logo" />
+                <nav className="bb-header-nav">
+                  <a href="#" className="bb-nav-link">Carpool</a>
+                  <a href="#" className="bb-nav-link">Bus</a>
+                </nav>
+              </div>
+              <div className="bb-header-right">
+                <button className="bb-header-icon">🔍</button>
+                <a href="#" className="bb-header-button">
+                  <span className="bb-icon">+</span>
+                  Publish a ride
+                </a>
+                <button className="bb-header-avatar">👤</button>
+              </div>
+            </div>
+          </header>
+
+          <main className="bb-container">
+            {/* Navigation tabs */}
+            <div className="bb-tabs">
+              <button className="bb-tab bb-tab--active">About you</button>
+              <button className="bb-tab">Account</button>
+            </div>
 
           {/* User profile section */}
           <section className="bb-profile-section">
@@ -127,7 +149,7 @@ function App() {
           <section className="bb-card">
             <h3>Your carpooling reliability</h3>
             <div className="bb-reliability-item">
-              <span className="bb-icon bb-icon--green">✓</span>
+              <span className="bb-icon bb-icon--green">📅</span>
               <span>Never cancels bookings as a passenger</span>
               <span className="bb-icon bb-icon--info">ℹ</span>
             </div>
@@ -177,7 +199,8 @@ function App() {
               </button>
             </div>
           </section>
-        </main>
+          </main>
+        </div>
       )}
 
       {view === 'document-selection' && (
@@ -207,11 +230,11 @@ function App() {
               
               <button 
                 className="bb-document-option" 
-                onClick={() => selectDocument('driving-licence')}
+                onClick={() => selectDocument('id-card')}
               >
                 <div className="bb-document-option-content">
                   <div className="bb-document-option-text">
-                    <h3>Driving Licence</h3>
+                    <h3>ID card (only Europe)</h3>
                     <p>Front and back</p>
                   </div>
                   <span className="bb-document-arrow">›</span>

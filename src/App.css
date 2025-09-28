@@ -33,8 +33,117 @@ html, body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Page container (wider and centered) */
-.bb-container { padding: 40px; max-width: 1200px; margin: 0 auto; }
+/* Header navigation */
+.bb-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e3ecf1;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.bb-header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.bb-header-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.bb-header-logo {
+  height: 32px;
+  width: auto;
+}
+
+.bb-header-nav {
+  display: flex;
+  gap: 24px;
+}
+
+.bb-nav-link {
+  color: #2dbfff;
+  text-decoration: none;
+  font-weight: 500;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.bb-nav-link:hover {
+  color: #008ec2;
+}
+
+.bb-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bb-header-icon {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #2dbfff;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.bb-header-button {
+  background: none;
+  color: #2dbfff;
+  border: none;
+  padding: 0;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-decoration: none;
+}
+
+.bb-header-button:hover {
+  color: #008ec2;
+}
+
+.bb-header-avatar {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.bb-header-avatar::after {
+  content: "▼";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #2dbfff;
+}
+
+/* Page container (centered block) */
+.bb-container { 
+  padding: 40px; 
+  max-width: 800px; 
+  margin: 0 auto; 
+  background: #ffffff;
+  margin-top: 20px;
+}
 .bb-hero { margin: 16px 0 24px; }
 .bb-hero h1 { margin: 0 0 8px; font-size: 28px; }
 .bb-hero p { margin: 0; color: #51646f; }
@@ -103,8 +212,8 @@ html, body {
 /* Profile section */
 .bb-profile-section {
   margin-bottom: 0;
-  padding: 32px 0;
-  border-bottom: 3px solid #e3ecf1;
+  padding: 48px 0;
+  border-bottom: 4px solid #e3ecf1;
 }
 
 .bb-profile-header {
@@ -138,13 +247,13 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .bb-profile-name h2 {
   margin: 0;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 36px;
+  font-weight: 800;
   color: #0a2332;
   font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -193,8 +302,8 @@ html, body {
   background: none; 
   border: none; 
   border-radius: 0; 
-  padding: 32px 0; 
-  border-bottom: 3px solid #e3ecf1;
+  padding: 40px 0; 
+  border-bottom: 4px solid #e3ecf1;
 }
 
 .bb-card:last-child {
@@ -202,9 +311,9 @@ html, body {
 }
 
 .bb-card h3 {
-  margin: 0 0 20px;
-  font-size: 24px;
-  font-weight: 700;
+  margin: 0 0 24px;
+  font-size: 26px;
+  font-weight: 800;
   color: #0a2332;
   font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -223,18 +332,24 @@ html, body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  border-radius: 50%;
+  background: #f0f8ff;
+  color: #2dbfff;
+  font-weight: 600;
 }
 
 .bb-icon--green {
   color: #28a745;
+  background: #f0f9f0;
   font-weight: bold;
 }
 
 .bb-icon--info {
-  color: #2dbfff;
+  color: #51646f;
+  background: #f5f5f5;
   margin-left: auto;
 }
 
@@ -265,12 +380,11 @@ html, body {
 }
 
 .bb-verify-option--primary {
-  background: #f8f9fa;
-  border: 1px solid #f8f9fa;
-  border-radius: 8px;
-  padding: 16px 20px;
-  margin-bottom: 12px;
-  font-weight: 600;
+  background: none;
+  border: none;
+  padding: 16px 0;
+  margin-bottom: 0;
+  font-weight: 500;
   font-size: 20px;
 }
 
@@ -301,7 +415,7 @@ html, body {
 }
 
 .bb-document-header .bb-logo {
-  height: 32px;
+  height: 48px;
   width: auto;
 }
 
@@ -312,18 +426,18 @@ html, body {
   align-items: flex-start;
   justify-content: flex-start;
   padding: 0 24px;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto;
   width: 100%;
-  padding-top: 40px;
+  padding-top: 60px;
 }
 
 .bb-document-title {
-  font-size: 28px;
-  font-weight: 600;
+  font-size: 36px;
+  font-weight: 700;
   color: #0a2332;
   text-align: left;
-  margin: 0 0 24px;
+  margin: 0 0 40px;
   font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 100%;
 }
@@ -353,7 +467,7 @@ html, body {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 20px 0;
 }
 
 .bb-document-option-text {
@@ -362,16 +476,16 @@ html, body {
 }
 
 .bb-document-option-text h3 {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   color: #0a2332;
-  margin: 0 0 1px;
+  margin: 0 0 4px;
   font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: left;
 }
 
 .bb-document-option-text p {
-  font-size: 13px;
+  font-size: 16px;
   color: #6b7280;
   margin: 0;
   font-family: 'GT Eesti Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -379,25 +493,25 @@ html, body {
 }
 
 .bb-document-arrow {
-  font-size: 16px;
+  font-size: 20px;
   color: #6b7280;
   font-weight: 600;
 }
 
 .bb-document-divider {
-  height: 1px;
+  height: 2px;
   background: #e5e7eb;
-  margin: 0;
+  margin: 8px 0;
 }
 
 .bb-document-footer {
-  margin-top: 24px;
+  margin-top: 40px;
   text-align: left;
   width: 100%;
 }
 
 .bb-document-footer p {
-  font-size: 14px;
+  font-size: 16px;
   color: #51646f;
   line-height: 1.5;
   margin: 0;
@@ -464,10 +578,14 @@ body, html {
 /* Make Jumio SDK inherit the app's font stack */
 jumio-sdk, jumio-sdk * { font-family: inherit !important; }
 
-/* Set Jumio SDK height */
+/* Set Jumio SDK height and width */
 jumio-sdk {
-  height: 800px !important;
-  min-height: 800px !important;
+  height: 1000px !important;
+  min-height: 1000px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  display: block !important;
 }
 
 /* Increase font size for document type selection buttons */
@@ -514,9 +632,9 @@ jumio-sdk {
   --jumio-sdk-color-primary6: #00aff5;
   
   /* Text color overrides */
-  --jumio-sdk-color-text-primary: #054652;
-  --jumio-sdk-color-text-secondary: #054652;
-  --jumio-sdk-color-text-tertiary: #054652;
+  --jumio-sdk-color-text-primary: #0a2332;
+  --jumio-sdk-color-text-secondary: #51646f;
+  --jumio-sdk-color-text-tertiary: #51646f;
 
   --jumio-sdk-theme-light-clickable-primary-default-bg-color: #00aff5;
   --jumio-sdk-theme-light-clickable-primary-default-color: #fff;
@@ -543,10 +661,10 @@ jumio-sdk {
   --jumio-sdk-theme-light-clickable-quiet-focus-bg-color: #008ec2;
   --jumio-sdk-theme-light-clickable-quiet-focus-color: #fff;
 
-  --jumio-sdk-theme-light-app-container-bg-color: transparent;
+  --jumio-sdk-theme-light-app-container-bg-color: #fdfdfd;
   --jumio-sdk-theme-dark-app-container-bg-color: transparent;
   --jumio-sdk-theme-light-page-bg-color: transparent;
-  --jumio-sdk-theme-dark-page-bg-color: transparent;
+  --jumio-sdk-theme-dark-page-bg-color: #fdfdfd;;
 
   --jumio-sdk-color-primary4: #00aff5;
   --jumio-sdk-color-primary6: #00aff5;
